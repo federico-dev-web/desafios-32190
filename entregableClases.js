@@ -9,7 +9,7 @@ class Usuario {
 
         
     getFullName() {
-        console.log(` ${this.nombre} ${this.apellido} `)
+        return (` ${this.nombre} ${this.apellido} `)
     } 
 
     addMascota(string) { 
@@ -17,7 +17,7 @@ class Usuario {
     }
 
     countMascotas() { 
-        console.log(this.mascotas.length);
+        return (this.mascotas.length)
     }
 
     addBook(nombre, autor) { 
@@ -28,7 +28,7 @@ class Usuario {
     getBookNames() { 
         let arreglo = []
         this.libros.forEach( element => { arreglo.push(element.nombre) } )
-        console.log(arreglo);
+        return (arreglo)
     }
 }
 
@@ -43,17 +43,17 @@ const usuario1 = new Usuario(
 )
 
 console.log('Nombre completo:')
-usuario1.getFullName()
+console.log(usuario1.getFullName())
 console.log('Cantidad inicial de mascotas:')
-usuario1.countMascotas()
+console.log(usuario1.countMascotas())
 usuario1.addMascota('araña')
 console.log('Cantidad de mascotas despues de agregar una:')
-usuario1.countMascotas()
+console.log(usuario1.countMascotas())
 console.log('Nombres de libros al inicio:')
-usuario1.getBookNames()
+console.log(usuario1.getBookNames())
 usuario1.addBook('La Biblia','Los Apostoles')
 console.log('Nombres de libros despues de agregar uno:')
-usuario1.getBookNames()
+console.log(usuario1.getBookNames())
 
 
 
