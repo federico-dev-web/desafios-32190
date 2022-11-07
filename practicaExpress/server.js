@@ -1,33 +1,10 @@
 const express = require('express')
 const fs = require('fs')
+const Contenedor = require('./entregableManejoDeArchivos.js')
 
-/// Incluyendo contenedor y leyendo el archivo de productos
 
-class Contenedor {
-    constructor(nombre){
-        this.nombre = nombre
-    }
+/// Creando contenedor 
 
-    async getById(Number){
-        //Object - Recibe un id y devuelve el objeto con ese id, o null si no está.
-        try { 
-            let contenido = await fs.promises.readFile(`${this.nombre}.txt`, 'utf-8')
-            return ( JSON.parse(contenido).find(element => element.id == Number) ) 
-        } catch (err) {
-            console.log(null)
-        }
-    }
-
-    async getAll() {
-        //Devuelve un array con los objetos presentes en el archivo.
-        try { 
-            let contenido = await fs.promises.readFile(`${this.nombre}.txt`, 'utf-8')
-            return JSON.parse(contenido)
-        } catch (err) {
-            console.log('El archivo no existe (getall)')
-        }
-    }
-}
 
 const productos = new Contenedor('productos')
 
