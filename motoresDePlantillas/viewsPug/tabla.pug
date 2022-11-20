@@ -1,0 +1,21 @@
+extends layout
+
+block contenido
+    h2(style="color:crimson;") Lista de productos
+    if data 
+        div(class="table-responsive")
+            table(class="table table-dark")
+                tr(style="color: yellow;")
+                    th Title 
+                    th Price
+                    th thumbnail
+                each prod in data
+                    tr
+                        td= prod.title
+                        td= prod.price
+                        td 
+                            img(src=prod.thumbnail alt="" width="50" height="50")
+    else
+        h3(class="alert alert-danger") No hay productos cargados
+
+    button(class="btn btn-primary mt-3 mb-5" onclick="location.href='./'") Volver al form

@@ -1,0 +1,24 @@
+<h2 style="color:crimson;">Lista de productos</h2>
+
+{{#if data}}
+    <div class="table-responsive">
+        <table class="table table-dark">
+            <tr style="color: yellow;"> 
+                <th>Title</th> 
+                <th>Price</th> 
+                <th>thumbnail</th> 
+            </tr>
+        {{#each data}}
+            <tr>
+                <td>{{this.title}}</td>
+                <td>{{this.price}}</td>
+                <td><img src="{{this.thumbnail}}" alt="" width="50" height="50"></td>
+            </tr>
+            {{/each}}
+        </table>
+    </div>
+    {{else}}
+    <h3 class="alert alert-danger">No hay productos cargados</h3>
+{{/if}}
+
+<button class="btn btn-primary mt-3 mb-5" onclick="location.href='./'">Volver al form</button>
