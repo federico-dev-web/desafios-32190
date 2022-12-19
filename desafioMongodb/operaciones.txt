@@ -1,0 +1,102 @@
+
+
+
+------- Creo la base ecommerce
+
+use ecommerce
+
+
+------- Creo las collections con 10 productos y 10 mensajes
+
+db.productos.insertMany([{title:"Escuadra", price:123.45, thumbnail:"https://cdn3.iconfinder.com/data/icons/education-209/64/ruler-triangle-stationary-school-256.png"},{title:"Calculadora", price:234.56, thumbnail:"https://cdn3.iconfinder.com/data/icons/education-209/64/calculator-math-tool-school-256.png"},{title:"Transportador", price:145.67, thumbnail:"https://cdn4.iconfinder.com/data/icons/education-759/2050/Education_flat-08-512.png"},{title:"Compas", price:2123.45, thumbnail:"https://cdn4.iconfinder.com/data/icons/creative-process-16/512/Precision-64.png"},{title:"Regla", price:1234.56, thumbnail:"https://cdn0.iconfinder.com/data/icons/graphic-design-tools-1/32/Ruler-Measurement-Scale-Measure-512.png"},{title:"Lapiz", price:3545.67, thumbnail:"https://cdn4.iconfinder.com/data/icons/education-738/64/pencil-ruler-sketch-tools-art-design-education-office-equipment-512.png"},{title:"Cinta metrica", price:1263.45, thumbnail:"https://cdn3.iconfinder.com/data/icons/unigrid-flat-tools/90/023_070_tools_ruler_size_width_measure-512.png"},{title:"Ropa", price:2348.56, thumbnail:"https://cdn3.iconfinder.com/data/icons/fashion-beauty-vol-1/512/ruler_pocket_tape_measure-512.png"},{title:"Lapicero", price:3445.67, thumbnail:"https://cdn1.iconfinder.com/data/icons/education-colors/100/25-512.png"},{title:"Pincel", price:4345.67, thumbnail:"https://cdn1.iconfinder.com/data/icons/web-design-development-line-color-vol-4/52/paint__ruler__measure__design-512.png"}])
+
+
+db.mensajes.insertMany([{email:"fede@fede.com",fyh:"2022-11-26T21:20:48.467Z",mensaje:"Hola!!"},{email:"alan@alan.com",fyh:"2022-11-26T21:21:48.467Z",mensaje:"Buenas"},{email:"daniel@daniel.com",fyh:"2022-11-26T21:23:14.021Z",mensaje:"como va?"},{email:"jorge@jorge.com",fyh:"2022-11-26T21:25:54.686Z",mensaje:"Todo bien, ustedes?"},{email:"fede@fede.com",fyh:"2022-11-26T21:26:54.686Z",mensaje:"aca andamos"},{email:"fede@fede.com",fyh:"2022-11-26T21:27:54.686Z",mensaje:"hicieron el desafio?"},{email:"alan@alan.com",fyh:"2022-11-26T21:28:54.686Z",mensaje:"Si, muy facil"},{email:"daniel@daniel.com",fyh:"2022-11-26T21:29:54.686Z",mensaje:"Yo no llegue"},{email:"jorge@jorge.com",fyh:"2022-11-26T21:30:54.686Z",mensaje:"Para cuando es?"},{email:"fede@fede.com",fyh:"2022-11-26T21:31:54.686Z",mensaje:"el miercoles"}])
+
+
+------- Listar todos los documentos en cada colección
+
+db.productos.find()
+
+
+db.mensajes.find()
+
+
+------- Mostrar la cantidad de documentos almacenados en cada una de ellas.
+
+
+db.productos.find().count()
+
+
+db.mensajes.find().count()
+
+
+------- Agregar un producto más en la colección de productos 
+
+
+db.productos.insertOne({title:"Carpeta", price:923.45, thumbnail:"https://cdn2.iconfinder.com/data/icons/thesquid-ink-40-free-flat-icon-pack/64/folder-512.png"})
+
+
+------- Realizar una consulta por nombre de producto específico
+
+
+db.productos.find({title:'Escuadra'})
+
+
+------- Listar los productos con precio menor a 1000 pesos
+
+
+db.productos.find({price: {$lt: 1000 } })
+
+
+------- Listar los productos con precio entre los 1000 a 3000 pesos
+
+
+db.productos.find({price: {$lte: 3000, $gte: 1000} })
+
+
+------- Listar los productos con precio mayor a 3000 pesos
+
+
+db.productos.find({price: {$gt: 3000 } })
+
+
+------- Realizar una consulta que traiga sólo el nombre del tercer producto más barato
+
+
+db.productos.find().sort({price: 1}).limit(1).skip(2)
+
+
+------- Hacer una actualización sobre todos los productos, agregando el campo stock a todos ellos con un valor de 100
+
+
+db.productos.updateMany( {} ,{$set: {stock: 100}})
+
+
+------- Cambiar el stock a cero de los productos con precios mayores a 4000 pesos
+
+
+db.productos.updateMany({price: {$gt: 4000 } }, {$set: {stock: 0}})
+
+
+------- Borrar los productos con precio menor a 1000 pesos
+
+
+db.productos.deleteMany({price: {$lt: 1000 } })
+
+
+------- Crear un usuario 'pepe' clave: 'asd456' que sólo pueda leer la base de datos ecommerce. Verificar que pepe no pueda cambiar la información
+
+
+db.createUser({user:"pepe",pwd:"asd456", roles: [ {role:"read",db:"ecommerce"} ] })
+
+
+
+
+mongod --dbpath . --auth 
+
+
+mongosh -u pepe -p asd456
+
+
+
