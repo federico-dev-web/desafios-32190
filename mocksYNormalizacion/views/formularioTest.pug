@@ -1,0 +1,19 @@
+extends layoutTest
+
+block content
+    h1(style="color:blue;") Ingrese los datos del producto
+    form(onsubmit="return false;addProduct();")
+        div(class="form-group")
+            label(for="title")
+                b Title
+            input(class="form-control" type="text" name="title" id="title" required)
+        div(class="form-group")
+            label(for="price")
+                b Price
+            input(class="form-control" type="text" name="price" id="price" required)
+        div(class="form-group")
+            label(for="thumbnail")
+                b Thumbnail
+            input(class="form-control" type="text" name="thumbnail" id="thumbnail" required)
+
+        button(class="btn btn-success mt-3 mb-5" onclick ="return addProduct()") Enviar
