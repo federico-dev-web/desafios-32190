@@ -5,17 +5,15 @@ block content
         
         div(id="usuario")
 
-        script(src="../../chatYProds.js " async) 
-
         div
             div(class="alert alert-success d-flex justify-content-between")
                 span(class='display-4 font-weight-normal') Bienvenido #{user} 
-                button(class="btn btn-warning" onclick ="return logOut()") Desloguear
+                button(class="btn btn-warning" onclick ="location.href='/logout'") Desloguear
 
         div(id="contenidoDeLogeo")
 
         div(class="jumbotron w-100")
-            h1(style="color:blue;")  #{user}
+            h1(style="color:blue;")
             h1(style="color:blue;") Ingrese los datos del producto
             form(onsubmit="return false;addProduct();")
                 div(class="form-group")

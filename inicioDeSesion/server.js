@@ -43,21 +43,17 @@ passport.use('register', new LocalStrategy({
     let usuarios = await usuariosYContrasenias.listarTodosLosUsuarios()
     const usuario = usuarios.find(usuario => usuario.username == username)
     if (usuario) {
-        return done('el usuario ya esta registrado')
+        return done(null, false)
     }
     //b-crypt genera el hash desde la contraseña enviada por el usuario
-    let hashedPass = await new Promise((resolve, reject) => {
-        bcrypt.hash(password, 10, function(err, hash) {
-            resolve(hash)
-        })
-    })
+    let hashedPass = bcrypt.hashSync(password, 10)
 
     const newUser = {
         username,
         password: hashedPass
     }
     
-    usuariosYContrasenias.insertarUsuario(newUser)
+    await usuariosYContrasenias.insertarUsuario(newUser)
 
     done(null, newUser)
 }))
@@ -67,24 +63,20 @@ passport.use('login', new LocalStrategy(async (username, password, done) => {
     let usuarios = await usuariosYContrasenias.listarTodosLosUsuarios()
     const usuario = usuarios.find(usuario => usuario.username == username)
     if (!usuario) {
-        return done('no hay usuario', false)
+        return done(null, false)
     }
 
     //b-crypt valida la contraseña
-    let validPass = await new Promise((resolve, reject) => {
-        bcrypt.compare(password, usuario.password, function(err, result) {
-            resolve (result);
-            }
-        )
-    })
+    let validPass = bcrypt.compareSync(password, usuario.password )
 
-    if (validPass) {
-        return done(null, usuario)
+    if (!validPass) {
+        return done(null, false)
     }
-    return done('pass incorrecta', false)
+
+    return done(null, usuario)
 }))
 
-//-----------SERIALIZER--------------------------------//
+//-----------SERIALIZE---------------------------------//
 
 passport.serializeUser((user, done) => {
     done(null, user.username)
@@ -122,7 +114,7 @@ app.get('/login', async (req, res) => {
     res.render('login')
 })
 
-app.post('/login', await passport.authenticate('login', { failureRedirect: '/fail-login', successRedirect: '/succesfull-login' }))
+app.post('/login',  passport.authenticate('login', { failureRedirect: '/fail-login', successRedirect: '/succesfull-login' }))
 
 //register
 app.get('/register', async (req, res) => {
@@ -132,28 +124,33 @@ app.get('/register', async (req, res) => {
     res.render('register')
 })
 
-app.post('/register',await passport.authenticate('register', { failureRedirect: '/failregister', successRedirect: '/'}))
+app.post('/register',await passport.authenticate('register', { failureRedirect: '/fail-register', successRedirect: '/login'}))
 
 //render fail login
-app.get('/fail-login', async (req, res) => {
+app.get('/fail-login', (req, res) => {
     res.render('failLogin')
 })
 
 //render fail register
-app.get('/fail-register', async (req, res) => {
+app.get('/fail-register', (req, res) => {
     res.render('failRegister')
 })
 
 //render succesfull login
 app.get('/succesfull-login', async (req, res) => {
     if (await req.isAuthenticated()) {
-        return res.render('loginExitoso')
+        return res.render('loginExitoso', {user: req.user.username})
     } else {
         res.redirect('/login')
     }
 })
 
-
+//logout
+app.get('/logout', (req, res) => {
+    req.logout(err => {
+        res.redirect('/login')
+    })
+})
 
 //websockets
 io.on('connection', async socket => {

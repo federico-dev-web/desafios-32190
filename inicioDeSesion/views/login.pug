@@ -8,12 +8,13 @@ block content
         div(class='conteiner')
                 div(class='jumbotron')
                     h1(style="color:blue;") Login de Usuario
-                    label
-                        b Ingrese su Mail
-                    input(class="form-control" type="text" id="NombreLogIn")
-                    label
-                        b Ingrese su Contraseña
-                    input(class="form-control" type="password" id="Password")
-                    button(class="btn btn-success mt-5 mb-5" onclick ="return logIn()") Enviar
+                    form(action="/login" method="post" role="form" autocomplete="off") 
+                        label
+                            b Ingrese su Mail
+                        input(id="nombre" name='username' placeholder="mail" class="form-control" type="text" required)
+                        label
+                            b Ingrese su Contraseña
+                        input(id="password" name='password' placeholder="password" class="form-control" type="password" required)
+                        button(class="btn btn-success mt-5 mb-5" type="submit" value="Login") Enviar
                     p(class="border-bottom border-4 w-auto") 
                     button(class="btn btn-success mt-5 mb-5" onclick="location.href='/register'") Ir a Register
