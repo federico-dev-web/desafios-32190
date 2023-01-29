@@ -1,99 +1,4 @@
-//defino variable que almacena nombre de session para el render y las funciones
-let user = ''
 
-//funcion que obtiene la session del back y realiza la renderizacion
-const getSession = async () => { 
-    user = await fetch('http://localhost:8080/login/get-session').then(
-    (response) => response.json()
-    ).then( 
-        (data) => data.nombre
-    ) 
-    userValidate(user)
-}
-
-//funcion que crea la session
-const setSession = async () => { 
-    let userSend  = `{"nombre":"${document.getElementById("NombreLogIn").value}"}`
-    await fetch('http://localhost:8080/login/set-session', 
-        {   
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            method: "POST",
-            body: userSend
-        }
-    )
-}
-//funcion que estira la duracion de la session
-const resetSession = async () => { 
-    let userSend = `{"nombre":"${user}"}`
-    let res = ''
-    await fetch('http://localhost:8080/login/reset-session', 
-        {   
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            method: "POST",
-            body: userSend
-        }
-    ).then(
-        (response) => response.json()
-        ).then( 
-            (data) => { res = data.nombre }
-        )
-    return res
-}
-
-//ejecuto el render inicial
-getSession()
-
-
-//Valida si el usuario existe y renderiza en consecuencia el formulario de log in o la api test con el nombre del usuario de la sesion
-const userValidate = (user) => { 
-    if (!user) {
-        const html = `
-            <div class='conteiner'>
-                <div class='jumbotron'>
-                    <h1 style="color:blue;" > Login de Usuario</h1>
-                    <label><b> Ingrese su Nombre </b></label>
-                    <input class="form-control" type="text" id="NombreLogIn"></input>
-                    <button class="btn btn-success mt-5 mb-5" onclick ="return logIn()" > Enviar </button>
-                </div>
-            </div>
-            `
-        return [
-            document.getElementById("usuario").innerHTML = html ,
-            document.getElementById("contenidoDeLogeo").style.display = 'none'
-        ]
-    }
-    const html = `<div class="alert alert-success d-flex justify-content-between"  ><span class='display-4 font-weight-normal'> Bienvenido ${user} </span> <button class="btn btn-warning" onclick ="return logOut()"> Desloguear </button> </div>`
-    return [
-        document.getElementById("usuario").innerHTML = html ,
-        document.getElementById("contenidoDeLogeo").style.display = 'block' 
-    ] 
-}
-
-
-//Funcion de deslogeo de session y render de despedida, pasados 2 segundos vuelve a ejecutar la funcion de render incinial
-const logOut = async () => {
-    await fetch('http://localhost:8080/login/destroy')
-    const html = `<div class="alert alert-primary d-flex justify-content-between"  ><span class='display-4 font-weight-normal'> Hasta luego ${user} </span></div>`
-    user = ''
-    document.getElementById("usuario").innerHTML = html ,
-    document.getElementById("contenidoDeLogeo").style.display = 'none'
-    setTimeout(() => {getSession()}, 2000)
-}
-
-//Boton de login que dispara funcion userValidate() para hacer el render
-const logIn = async () => { 
-    if (document.getElementById("NombreLogIn").value) {
-        await setSession()
-        await getSession()
-    }
-}
-
-
-////////////////////////////////////////////
 
 const socket = io()
 
@@ -185,14 +90,6 @@ const addProduct = async () => {
         price: document.getElementById("price").value,
         thumbnail: document.getElementById("thumbnail").value
     }
-
-    let estadoSession = await resetSession()
-    console.log(estadoSession);
-    if (estadoSession == 'session expirada') {
-        await getSession()
-    } else {
-        socket.emit('new-prod', nuevoProd)
-    }
 }
 
 
@@ -219,12 +116,6 @@ const newMessage = async () => {
             text: document.getElementById("message").value,
             fyh: date
         }
-    }
-    let estadoSession = await resetSession()
-    if (estadoSession == 'session expirada') {
-        await getSession()
-    } else {
-        socket.emit('new-msg', nuevoMsj)
     }
 }
 
