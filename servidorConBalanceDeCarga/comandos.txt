@@ -1,0 +1,26 @@
+nodemon server.js
+
+/////////forever/////////
+
+
+forever start server.js -8081
+
+forever list
+
+forever stopall
+
+///////// P M 2 /////////
+
+pm2 start serverPM2.js --name serverModoFork --watch -- -p 8081
+pm2 start serverPM2.js --name serverModoCluster -i max --watch -- -p 8082
+
+pm2 stop all
+
+pm2 delete all
+
+
+pm2 list
+pm2 monit
+pm2 stop
+pm2 restart
+pm2 delete
