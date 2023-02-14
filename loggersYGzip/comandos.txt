@@ -1,0 +1,42 @@
+nodemon server.js
+
+/////////forever/////////
+
+
+forever start server.js -8081
+
+forever list
+
+forever stopall
+
+///////// P M 2 /////////
+
+pm2 start serverPM2.js --name serverModoFork --watch -- -p 8081
+pm2 start serverPM2.js --name serverModoCluster -i max --watch -- -p 8082
+
+pm2 stop all
+
+pm2 delete all
+
+
+pm2 list
+pm2 monit
+pm2 stop
+pm2 restart
+pm2 delete
+
+/////////CLASE 32/////////
+
+
+artillery quick --count 50 -n 20 "http://localhost:8080/info" > result_cluster_50x20.txt
+artillery quick --count 50 -n 20 "http://localhost:8080/info" > result_fork_50x20.txt
+
+artillery quick --count 50 -n 20 "http://localhost:8080/info" > result_fork_sinLog.txt
+artillery quick --count 50 -n 20 "http://localhost:8080/info" > result_fork_conlog.txt
+
+
+
+node --prof-process prof_fork.log > result_prof_fork.txt
+
+node --prof-process prof_fork_sinLog.log > result_prof_fork_sinLog.txt
+node --prof-process prof_fork_conLog.log > result_prof_fork_conLog.txt

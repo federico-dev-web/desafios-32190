@@ -1,0 +1,33 @@
+{"level":"warn","message":"invalid route: undefined"}
+{"level":"warn","message":"invalid route: undefined"}
+{"level":"warn","message":"invalid route: undefined"}
+{"level":"warn","message":"invalid route: undefined"}
+{"level":"warn","message":"invalid route: undefined"}
+{"level":"warn","message":"invalid route: http://localhost:8081/info"}
+{"level":"warn","message":"invalid route: http://localhost:8081/info"}
+{"level":"warn","message":"invalid route: http://localhost:8081/info"}
+{"level":"warn","message":"invalid route: http://localhost:8081/info"}
+{"level":"warn","message":"invalid route: http://localhost:8081/info"}
+{"level":"warn","message":"invalid route: http://localhost:8081/info"}
+{"level":"warn","message":"invalid route: http://localhost:8081/info"}
+{"level":"warn","message":"invalid route: http://localhost:8081/info"}
+{"level":"warn","message":"invalid route: http://localhost:8081/info"}
+{"level":"warn","message":"invalid route: http://localhost:8081/info"}
+{"level":"warn","message":"invalid route: http://localhost:8081/info"}
+{"level":"warn","message":"invalid route: http://localhost:8081/info"}
+{"level":"warn","message":"invalid route: http://localhost:8081/login"}
+{"level":"warn","message":"invalid route: http://localhost:8081/succesfull-login"}
+{"level":"error","message":"error productos: MongoPoolClosedError: Attempted to check out a connection from closed connection pool"}
+{"level":"warn","message":"invalid route: http://localhost:8081/login"}
+{"level":"warn","message":"invalid route: http://localhost:8081/succesfull-login"}
+{"level":"warn","message":"invalid route: http://localhost:8081/login"}
+{"level":"warn","message":"invalid route: http://localhost:8081/login"}
+{"level":"warn","message":"invalid route: http://localhost:8081/succesfull-login"}
+{"level":"error","message":"error productos: MongoPoolClosedError: Attempted to check out a connection from closed connection pool"}
+{"level":"error","message":"error productos: MongoPoolClosedError: Attempted to check out a connection from closed connection pool"}
+{"level":"warn","message":"invalid route: undefined"}
+{"level":"warn","message":"invalid route: undefined"}
+{"level":"warn","message":"invalid route: undefined"}
+{"level":"warn","message":"invalid route: undefined"}
+{"level":"warn","message":"invalid route: undefined"}
+{"level":"warn","message":"invalid route: undefined"}
