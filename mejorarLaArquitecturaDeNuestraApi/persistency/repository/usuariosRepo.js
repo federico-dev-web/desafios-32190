@@ -9,6 +9,13 @@ export default class usuariosRepo {
         this.dao = usuarioDaoFactory.getDao()
     }
 
+    static getInstance() {
+        if(!instance) {
+            instance =  new usuariosRepo()
+        }
+        return instance
+    }
+
     async insertarUsuario(user) {
         await this.dao.insertarUsuario( user )
     }

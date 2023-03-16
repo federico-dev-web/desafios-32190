@@ -9,6 +9,13 @@ export default class mensajesRepo {
         this.dao = mensajesDaoFactory.getDao()
     }
 
+    static getInstance() {
+        if(!instance) {
+            instance =  new mensajesRepo()
+        }
+        return instance
+    }
+
     async insertarMensaje(mensaje) {
         //Devuelve todos los mensajes
         await this.dao.deleteMany({})

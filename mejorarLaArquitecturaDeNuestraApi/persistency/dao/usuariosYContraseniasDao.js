@@ -9,6 +9,13 @@ class mongoUsuariosYContraseniasDao {
         this.usuarios = mongoose.model('usuariosycontrasenias', usuariosSchema)
     }
 
+    static getInstance() {
+        if(!instance) {
+            instance =  new mongoUsuariosYContraseniasDao()
+        }
+        return instance
+    }
+
     async init() {
         await mongoose.connect(this.connString, {useNewUrlParser: true, useUnifiedTopology: true})
     }

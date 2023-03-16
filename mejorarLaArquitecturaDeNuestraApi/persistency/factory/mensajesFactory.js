@@ -11,4 +11,10 @@ export default class mensajesDaoFactory{
     static getDao() {
         return dao
     }
+    static getInstance() {
+        if(!instance) {
+            instance =  new mensajesDaoFactory()
+        }
+        return instance
+    }
 }

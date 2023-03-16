@@ -14,4 +14,10 @@ export default class usuarioDaoFactory{
     static getDao() {
         return dao
     }
+    static getInstance() {
+        if(!instance) {
+            instance =  new usuarioDaoFactory()
+        }
+        return instance
+    }
 }

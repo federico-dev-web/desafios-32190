@@ -12,6 +12,13 @@ class mongoMensajesNormDao {
         this.mensajes = mongoose.model('mensajesnormalizados', mensajesNormSchema)
     }
 
+    static getInstance() {
+        if(!instance) {
+            instance =  new mongoMensajesNormDao()
+        }
+        return instance
+    }
+
     async init() {
         await mongoose.connect(this.connString, {useNewUrlParser: true, useUnifiedTopology: true})
     }
