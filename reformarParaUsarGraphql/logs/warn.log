@@ -1,0 +1,40 @@
+{"level":"warn","message":"invalid route: undefined"}
+{"level":"warn","message":"invalid route: undefined"}
+{"level":"warn","message":"invalid route: undefined"}
+{"level":"warn","message":"invalid route: undefined"}
+{"level":"warn","message":"invalid route: undefined"}
+{"level":"warn","message":"invalid route: http://localhost:8081/info"}
+{"level":"warn","message":"invalid route: http://localhost:8081/info"}
+{"level":"warn","message":"invalid route: http://localhost:8081/info"}
+{"level":"warn","message":"invalid route: http://localhost:8081/info"}
+{"level":"warn","message":"invalid route: http://localhost:8081/info"}
+{"level":"warn","message":"invalid route: http://localhost:8081/info"}
+{"level":"warn","message":"invalid route: http://localhost:8081/info"}
+{"level":"warn","message":"invalid route: http://localhost:8081/info"}
+{"level":"warn","message":"invalid route: http://localhost:8081/info"}
+{"level":"warn","message":"invalid route: http://localhost:8081/info"}
+{"level":"warn","message":"invalid route: http://localhost:8081/info"}
+{"level":"warn","message":"invalid route: http://localhost:8081/info"}
+{"level":"warn","message":"invalid route: http://localhost:8081/login"}
+{"level":"warn","message":"invalid route: http://localhost:8081/succesfull-login"}
+{"level":"error","message":"error productos: MongoPoolClosedError: Attempted to check out a connection from closed connection pool"}
+{"level":"warn","message":"invalid route: http://localhost:8081/login"}
+{"level":"warn","message":"invalid route: http://localhost:8081/succesfull-login"}
+{"level":"warn","message":"invalid route: http://localhost:8081/login"}
+{"level":"warn","message":"invalid route: http://localhost:8081/login"}
+{"level":"warn","message":"invalid route: http://localhost:8081/succesfull-login"}
+{"level":"error","message":"error productos: MongoPoolClosedError: Attempted to check out a connection from closed connection pool"}
+{"level":"error","message":"error productos: MongoPoolClosedError: Attempted to check out a connection from closed connection pool"}
+{"level":"warn","message":"invalid route: undefined"}
+{"level":"warn","message":"invalid route: undefined"}
+{"level":"warn","message":"invalid route: undefined"}
+{"level":"warn","message":"invalid route: undefined"}
+{"level":"warn","message":"invalid route: undefined"}
+{"level":"warn","message":"invalid route: undefined"}
+{"level":"error","message":"error productos: MongooseError: Can't call `openUri()` on an active connection with different connection strings. Make sure you aren't calling `mongoose.connect()` multiple times. See: https://mongoosejs.com/docs/connections.html#multiple_connections"}
+{"level":"error","message":"error productos: TypeError: this.dao.find is not a function"}
+{"level":"error","message":"error productos: TypeError: this.dao.find is not a function"}
+{"level":"error","message":"error productos: TypeError: this.dao.find is not a function"}
+{"level":"error","message":"error productos: Error: \"entities\" es un campo requerido"}
+{"level":"error","message":"error productos: Error: \"entities\" es un campo requerido"}
+{"level":"error","message":"error productos: Error: \"entities\" es un campo requerido"}
